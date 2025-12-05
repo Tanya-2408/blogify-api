@@ -1,25 +1,27 @@
 // src/controllers/posts.controller.js
 
-// Controller #1 — Get ALL posts
-exports.getAllPosts = (req, res) => {
+// Controller: Fetch all posts
+export const getAllPosts = (req, res) => {
   res.status(200).json({
-    message: "Route handled by postController.getAllPosts",
+    success: true,
+    data: {
+      message: "All posts fetched successfully"
+      // Later, replace this with actual posts array from the database
+      // posts: [...]
+    }
   });
 };
 
-// Controller #2 — Get a post by ID
-exports.getPostById = async (req, res) => {
-  try {
-    const postId = req.params.postId; // capture ID from URL
+// Controller: Fetch a single post by ID
+export const getPostById = (req, res) => {
+  const { postId } = req.params;
 
-    res.status(200).json({
-      message: "Fetching data for post with ID: " + postId,
-      postId,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "Something went wrong",
-      error,
-    });
-  }
+  res.status(200).json({
+    success: true,
+    data: {
+      postId: postId
+      // Later, replace this with actual post data when DB is added
+      // post: {...}
+    }
+  });
 };
