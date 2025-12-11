@@ -1,27 +1,32 @@
-// src/controllers/posts.controller.js
+// In-memory posts storage
+let posts = [];
 
-// Controller: Fetch all posts
-export const getAllPosts = (req, res) => {
+// GET all posts
+const getAllPosts = (req, res) => {
   res.status(200).json({
     success: true,
-    data: {
-      message: "All posts fetched successfully"
-      // Later, replace this with actual posts array from the database
-      // posts: [...]
-    }
+    data: posts
   });
 };
 
-// Controller: Fetch a single post by ID
-export const getPostById = (req, res) => {
-  const { postId } = req.params;
+// CREATE a new post
+const createPost = (req, res) => {
+  const { title, content } = req.body;
 
-  res.status(200).json({
+  if (!title || !content) {
+    return res.status(400).json({
+      success: false,
+      message: "Title and content are required"
+    });
+  }
+
+  const newPost = { title, content };
+  posts.push(newPost); // store in memory
+
+  res.status(201).json({
     success: true,
-    data: {
-      postId: postId
-      // Later, replace this with actual post data when DB is added
-      // post: {...}
-    }
+    data: newPost
   });
 };
+
+module.exports = { getAllPosts, createPost };

@@ -1,13 +1,8 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
+const { getAllPosts, createPost } = require('../controllers/posts.controller');
 
-// Import controllers
-const postController = require("../controllers/posts.controller");
-
-// GET /api/v1/posts → All posts
-router.get("/", postController.getAllPosts);
-
-// GET /api/v1/posts/:postId → Single post by ID
-router.get("/:postId", postController.getPostById);
+router.get('/', getAllPosts);      // GET all posts
+router.post('/', createPost);      // CREATE a new post
 
 module.exports = router;
