@@ -1,19 +1,25 @@
-const express = require('express');
-const cors = require('cors');
-const postsRouter = require('./routes/posts.routes');
+require('dotenv').config(); // 🔥 MUST BE FIRST
 
+const express = require('express');
 const app = express();
 
-// Middlewares
-app.use(cors());
-app.use(express.json()); // parse JSON bodies
+const authRoutes = require('./routes/auth.routes');
+const uploadRoutes = require('./routes/upload.routes');
+
+const errorHandler = require('./middlewares/error.middleware');
+const notFound = require('./middlewares/notFound');
+
+// Body parser
+app.use(express.json());
 
 // Routes
-app.use('/api/posts', postsRouter);
+app.use('/api/auth', authRoutes);
+app.use('/api/upload', uploadRoutes);
 
-// Health check
-app.get('/', (req, res) => {
-  res.send('Blogify API is running!');
-});
+// 404
+app.use(notFound);
+
+// Global error handler
+app.use(errorHandler);
 
 module.exports = app;

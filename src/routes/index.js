@@ -1,10 +1,8 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-// Import resource routers
-const postsRouter = require('./posts.routes');
+const analyticsRoutes = require("./analytics.routes");
 
-// Mount the posts router
-router.use('/posts', postsRouter);
+router.use("/analytics", analyticsRoutes);
 
 module.exports = router;
