@@ -73,16 +73,16 @@ Create a `.env` file in the root directory:
 
 ```env
 # Database
-MONGO_URI=mongodb+srv://blogify-user:SkpdjFijEiyHXpwr@blogify-cluster.2punxoq.mongodb.net/blogify?appName=Blogify-Cluster
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/blogify
 
 # JWT
-JWT_SECRET=yblogify_project_1234
+JWT_SECRET=your_secure_random_secret
 JWT_EXPIRES_IN=7d
 
 # Cloudinary
-CLOUDINARY_CLOUD_NAME=dqprqrydg
-CLOUDINARY_API_KEY=855184342459641
-CLOUDINARY_API_SECRET=bEgENAhdLj5K2gjiUE-DaAfqPkk
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 
 # Stripe
 STRIPE_SECRET_KEY=sk_test_...
